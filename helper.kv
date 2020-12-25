@@ -1,0 +1,150 @@
+ScreenManager:
+    Hello:
+<Hello>:
+    name: 'hello'
+    NavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDToolbar:
+                        left_action_items: [["account-arrow-left", lambda x: nav_drawer.toggle_nav_drawer()]]
+                        title: "Hoang Viet's Smart Home"
+                        md_bg_color: .2, .2, .2, 1
+                        specific_text_color: 1, 1, 1, 1
+                    MDBottomNavigation:
+                        MDBottomNavigationItem:
+                            name: 'screen 1'
+                            text: 'Living Room'
+                            icon: 'home'
+                            Image:
+                                size_hint: 1,1
+                                pos_hint: {'center_x': .5, 'center_y': .8}
+                                source: 'living.jpg'
+                            MDCard:
+                                orientation: 'vertical'
+                                pos_hint: {'center_x': .3, 'center_y': .3}
+                                size_hint: .25,.25
+                                pos: 70,100
+                                elevation: 10
+                                MDLabel:
+                                    text: "Temperature"
+                                    halign: 'center'
+                                    pos_hint: {'center_x': .5, 'center_y':.8}
+                                    theme_text_color: 'Custom'
+                                    text_color : 131/255, 169/255, 92/255,1
+                                    font_style : ('Caption')
+                           
+                                MDLabel:
+                                    id: label_temp
+                                    text: "30"
+                                    halign: 'center'
+                                    pos_hint: {'center_x': .5, 'center_y':.4}
+                                    font_style : ('H3')
+                                    theme_text_color: 'Custom'
+                                    text_color: 148/255, 78/255, 108/255,1
+                            MDCard:
+                                orientation: 'vertical'
+                                pos_hint: {'center_x': .7, 'center_y': .3}
+                                size_hint: .25,.25
+                                pos: 230,100
+                                elevation: 10
+                                MDLabel:
+                                    text: "Humidity"
+                                    halign: 'center'
+                                    pos_hint: {'center_x': .5, 'center_y':.8}
+                                    theme_text_color: 'Custom'
+                                    text_color : 131/255, 169/255, 92/255,1
+                                    font_style : ('Caption')
+                           
+                                MDLabel:
+                                    id: label_hum
+                                    text: "85"
+                                    halign: 'center'
+                                    pos_hint: {'center_x': .5, 'center_y':.4}
+                                    font_style : ('H3')
+                                    theme_text_color: 'Custom'
+                                    text_color: 148/255, 78/255, 108/255,1
+                            MDIconButton:
+                                icon: 'ceiling-light'
+                                user_font_size: "50sp"
+                                halign: "center"
+                                pos_hint: {'center_x': .65, 'center_y':.1}
+                                specific_text_colorr: 204/255, 115/255, 81/255, 1
+                            MDIconButton:
+                                icon: 'fan'
+                                user_font_size: "50sp"
+                                halign: "center"
+                                pos_hint: {'center_x': .25, 'center_y':.1}
+                                specific_text_colorr: 204/255, 115/255, 81/255, 1
+                            MDSwitch:
+                                width: dp(40)
+                                pos_hint: {'center_x':.4,'center_y': .1}
+                            MDSwitch:
+                                width: dp(40)
+                                pos_hint: {'center_x':.8,'center_y': .1}
+                                on_active: root.event_button_light(*args)
+                        MDBottomNavigationItem:
+                            name: 'screen 2'
+                            text: 'Bed Room'
+                            icon: 'home'
+                            Image:
+                                pos_hint: {'center_x': .5, 'center_y': .5}
+                                size: '200dp', '200dp'
+                                source: 'bedroom.jpg'
+                        MDBottomNavigationItem:
+                            name: 'screen 3'
+                            text: 'KitChen Room'
+                            icon: 'home'
+                            Image:
+                                pos_hint: {'center_x': .5, 'center_y': .5}
+                                size: '150dp', '100dp'
+                                source: 'kitchen.jpg'
+                            
+           
+        MDNavigationDrawer:
+            id: nav_drawer
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: '8dp'
+                padding: '8dp'
+                Image:
+                    source:'daidien.jpg'
+                MDLabel:
+                    text: 'Nguyễn Văn Hoàng Việt'
+                    font_style: "Button"
+                    size_hint_y: None
+                    halign: 'center'
+                    height: self.texture_size[1]
+                MDLabel:
+                    text: '106170276'
+                    halign: 'center'
+                    font_style: "Caption"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                ScrollView:
+                    MDList:
+                        OneLineIconListItem:
+                            text: 'K157/28 Pham Nhu Xuong'
+                            font_style: "Caption"
+                            IconLeftWidget:
+                                icon: 'home'
+                        OneLineIconListItem:
+                            text: 'Da Nang University'
+                            font_style: "Caption"
+                            IconLeftWidget:
+                                icon: 'school'
+                        OneLineIconListItem:
+                            text:'0795565299'
+                            font_style: "Caption"
+                            IconLeftWidget:
+                                icon: 'phone'
+                        OneLineIconListItem:
+                            text:'Dark mode'
+                            font_style: "Caption"
+                            IconLeftWidget:
+                                icon: 'theme-light-dark'
+                            MDSwitch:
+                                width: dp(40)
+                                pos_hint: {'center_x':.7,'center_y': .5}
+                                on_active: app.check(*args)
