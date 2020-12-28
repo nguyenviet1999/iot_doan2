@@ -7,7 +7,7 @@ import pyrebase
 import threading
 import time
 
-temp, hum, sign_app = "", "", ""
+temp, hum, sign_app, status_light = "", "", "", ""
 
 config = {
   "apiKey": "AIzaSyBtq5sxCa0Bx0EqG7UTYcnmxeW70JMW79c",
@@ -26,6 +26,7 @@ database = firebase.database()
 class Hello(Screen):
     def __init__(self, **kwargs):
         super(Hello, self).__init__(**kwargs)
+        Clock.schedule_once(self.statusLight)
         Clock.schedule_interval(self.change_temp_hum, 2)
 
     def event_button_light(self, checkbox, value):
@@ -35,8 +36,15 @@ class Hello(Screen):
         else:
             sign_app = "off"
         print(sign_app)
-        
 
+    def statusLight(self, *args):
+        global status_light
+        print(status_light)
+        if status_light == "on":
+            self.ids.switch_light.active = True
+        else:
+            self.ids.switch_light.active = False
+    
     def change_temp_hum(self, *args):
         global temp, hum
         self.ids.label_temp.text = temp
@@ -70,14 +78,12 @@ class DemoApp(MDApp):
         print(instance.icon)
 
 def get_data():
-    global temp, hum, database
+    global temp, hum, database, status_light
     while True:
         data = database.child("DHT11").get()
         hum = data.val()["hum"]
         temp = data.val()["temp"]
-        print(hum)
-        print(temp)
-        time.sleep(1)
+        time.sleep(0.5)
 
 def send_data():
     global sign_app, database
@@ -88,6 +94,8 @@ def send_data():
             database.child("DHT11").update({"sign_app":"off"})
         time.sleep(0.5)
 
+data = database.child("DHT11").get()
+status_light = data.val()["status_light"]
 threading.Thread(target=get_data).start()
 threading.Thread(target=send_data).start()
 DemoApp().run()

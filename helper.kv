@@ -23,67 +23,73 @@ ScreenManager:
                                 source: 'living.jpg'
                             MDCard:
                                 orientation: 'vertical'
-                                pos_hint: {'center_x': .3, 'center_y': .3}
-                                size_hint: .25,.25
+                                pos_hint: {'center_x': .25, 'center_y': .35}
+                                size_hint: .2,.2
                                 pos: 70,100
                                 elevation: 10
-                                MDLabel:
-                                    text: "Temperature"
+                                Image:
+                                    size: '100dp', '100dp'
+                                    source: 'temp1.png'
                                     halign: 'center'
-                                    pos_hint: {'center_x': .5, 'center_y':.8}
-                                    theme_text_color: 'Custom'
-                                    text_color : 131/255, 169/255, 92/255,1
-                                    font_style : ('Caption')
-                           
                                 MDLabel:
                                     id: label_temp
                                     text: "30"
                                     halign: 'center'
                                     pos_hint: {'center_x': .5, 'center_y':.4}
-                                    font_style : ('H4')
+                                    font_size: '25sp'
                                     theme_text_color: 'Custom'
-                                    text_color: 148/255, 78/255, 108/255,1
+                                    text_color: 215/255, 66/255, 66/255,1
                             MDCard:
                                 orientation: 'vertical'
-                                pos_hint: {'center_x': .7, 'center_y': .3}
-                                size_hint: .25,.25
+                                pos_hint: {'center_x': .25, 'center_y': .12}
+                                size_hint: .2,.2
                                 pos: 230,100
                                 elevation: 10
-                                MDLabel:
-                                    text: "Humidity"
+                                Image:
+                                    size: '100dp', '100dp'
+                                    source: 'humidity.png'
                                     halign: 'center'
-                                    pos_hint: {'center_x': .5, 'center_y':.8}
-                                    theme_text_color: 'Custom'
-                                    text_color : 131/255, 169/255, 92/255,1
-                                    font_style : ('Caption')
                            
                                 MDLabel:
                                     id: label_hum
                                     text: "85"
                                     halign: 'center'
                                     pos_hint: {'center_x': .5, 'center_y':.4}
-                                    font_style : ('H4')
+                                    font_size: '25sp'
                                     theme_text_color: 'Custom'
-                                    text_color: 148/255, 78/255, 108/255,1
-                            MDIconButton:
-                                icon: 'ceiling-light'
-                                user_font_size: "50sp"
-                                halign: "center"
-                                pos_hint: {'center_x': .65, 'center_y':.1}
-                                specific_text_colorr: 204/255, 115/255, 81/255, 1
-                            MDIconButton:
-                                icon: 'fan'
-                                user_font_size: "50sp"
-                                halign: "center"
-                                pos_hint: {'center_x': .25, 'center_y':.1}
-                                specific_text_colorr: 204/255, 115/255, 81/255, 1
-                            MDSwitch:
-                                width: dp(40)
-                                pos_hint: {'center_x':.4,'center_y': .1}
-                            MDSwitch:
-                                width: dp(40)
-                                pos_hint: {'center_x':.8,'center_y': .1}
-                                on_active: root.event_button_light(*args)
+                                    text_color: 145/255, 222/255, 245/255,1
+                            MDCard:
+                                orientation: 'horizontal'
+                                pos_hint: {'center_x': .72, 'center_y': .35}
+                                size_hint: .32,.15
+                                pos: 100,100
+                                elevation: 10
+                                
+                                MDSwitch:
+                                    id: switch_light
+                                    width: dp(40)
+                                    on_active: root.event_button_light(*args)
+                                    active: False
+                                    pos_hint: {'center_x':.9,'center_y': .5}
+                                Image:
+                                    size_hint: .7,.7
+                                    source: 'lamp.png'
+                                    pos_hint: {'center_x': .4, 'center_y':.5}
+                            MDCard:
+                                orientation: 'horizontal'
+                                pos_hint: {'center_x': .72, 'center_y': .125}
+                                size_hint: .32,.15
+                                pos: 100,100
+                                elevation: 10     
+                                MDSwitch:
+                                    width: dp(40)
+                                    pos_hint: {'center_x':.5,'center_y': .5}
+                                Image:
+                                    size_hint: .7,.7
+                                    source: 'fan.png'
+                                    halign: 'center'
+                                    pos_hint: {'center_x': .5, 'center_y':.5}
+                            
                         MDBottomNavigationItem:
                             name: 'screen 2'
                             text: 'Bed Room'
