@@ -16,7 +16,9 @@ ScreenManager:
                         MDBottomNavigationItem:
                             name: 'screen 1'
                             text: 'Living Room'
-                            icon: 'home'
+                            icon: 'home-floor-1'
+    #LIVINGROOM/////////////////////////////////////////////////////////////////////////////
+    #///////////////////////////////////////////////////////////////////////////////////  
                             Image:
                                 size_hint: 1,1
                                 pos_hint: {'center_x': .5, 'center_y': .8}
@@ -26,11 +28,14 @@ ScreenManager:
                                 pos_hint: {'center_x': .25, 'center_y': .35}
                                 size_hint: .2,.2
                                 pos: 70,100
-                                elevation: 10
+                                #elevation: 10
+                                border_radius: 5
+                                radius: [20] 
                                 Image:
                                     size: '100dp', '100dp'
                                     source: 'temp1.png'
                                     halign: 'center'
+                                    
                                 MDLabel:
                                     id: label_temp
                                     text: "30"
@@ -44,7 +49,9 @@ ScreenManager:
                                 pos_hint: {'center_x': .25, 'center_y': .12}
                                 size_hint: .2,.2
                                 pos: 230,100
-                                elevation: 10
+                                #elevation: 10
+                                border_radius: 5
+                                radius: [20]        
                                 Image:
                                     size: '100dp', '100dp'
                                     source: 'humidity.png'
@@ -63,17 +70,100 @@ ScreenManager:
                                 pos_hint: {'center_x': .72, 'center_y': .35}
                                 size_hint: .32,.15
                                 pos: 100,100
-                                elevation: 10
-                                
+                                #elevation: 10
+                                border_radius: 5
+                                radius: [20] 
                                 MDSwitch:
                                     id: switch_light
                                     width: dp(40)
                                     on_active: root.event_button_light(*args)
                                     active: False
                                     pos_hint: {'center_x':.9,'center_y': .5}
+                                    on_active: app.check(*args)
+                                Label:
+                                    text: 'power up'
                                 Image:
                                     size_hint: .7,.7
-                                    source: 'lamp.png'
+                                    source: 'light-bulb-2-64.ico'
+                                    pos_hint: {'center_x': .4, 'center_y':.5}
+                            MDCard:
+                                orientation: 'horizontal'
+                                pos_hint: {'center_x': .72, 'center_y': .125}
+                                size_hint: .32,.15
+                                pos: 100,100
+                                border_radius: 5
+                                radius: [20] 
+                                #elevation: 10     
+                                MDSwitch:
+                                    id: switch_fan
+                                    width: dp(40)
+                                    pos_hint: {'center_x':.5,'center_y': .5}
+                                    on_active: root.event_button_fan(*args)
+                                    active: False
+                                Image:
+                                    size_hint: .7,.7
+                                    source: 'fan-64.ico'
+                                    halign: 'center'
+                                    pos_hint: {'center_x': .5, 'center_y':.5}
+    #BEDROOM/////////////////////////////////////////////////////////////////////////////
+    #///////////////////////////////////////////////////////////////////////////////////     
+                        MDBottomNavigationItem:
+                            name: 'screen 2'
+                            text: 'Bed Room'
+                            icon: 'home-floor-2'
+                            Image:
+                                size_hint: 1,1
+                                pos_hint: {'center_x': .5, 'center_y': .8}
+                                source: 'bedroom.jpg'
+                            MDCard:
+                                orientation: 'vertical'
+                                pos_hint: {'center_x': .25, 'center_y': .35}
+                                size_hint: .2,.2
+                                pos: 70,100
+                                elevation: 10
+                                Image:
+                                    size: '100dp', '100dp'
+                                    source: 'temp1.png'
+                                    halign: 'center'
+                                MDLabel:
+                                    text: "30"
+                                    halign: 'center'
+                                    pos_hint: {'center_x': .5, 'center_y':.4}
+                                    font_size: '25sp'
+                                    theme_text_color: 'Custom'
+                                    text_color: 215/255, 66/255, 66/255,1
+                            MDCard:
+                                orientation: 'vertical'
+                                pos_hint: {'center_x': .25, 'center_y': .12}
+                                size_hint: .2,.2
+                                pos: 230,100
+                                elevation: 10
+                                Image:
+                                    size: '100dp', '100dp'
+                                    source: 'humidity.png'
+                                    halign: 'center'
+                           
+                                MDLabel:
+                                    text: "85"
+                                    halign: 'center'
+                                    pos_hint: {'center_x': .5, 'center_y':.4}
+                                    font_size: '25sp'
+                                    theme_text_color: 'Custom'
+                                    text_color: 145/255, 222/255, 245/255,1
+                            MDCard:
+                                orientation: 'horizontal'
+                                pos_hint: {'center_x': .72, 'center_y': .35}
+                                size_hint: .32,.15
+                                pos: 100,100
+                                elevation: 10
+                                
+                                MDSwitch:
+                                    width: dp(40)
+                                    active: False
+                                    pos_hint: {'center_x':.9,'center_y': .5}
+                                Image:
+                                    size_hint: .7,.7
+                                    source: 'light-bulb-2-64.ico'
                                     pos_hint: {'center_x': .4, 'center_y':.5}
                             MDCard:
                                 orientation: 'horizontal'
@@ -86,28 +176,85 @@ ScreenManager:
                                     pos_hint: {'center_x':.5,'center_y': .5}
                                 Image:
                                     size_hint: .7,.7
-                                    source: 'fan.png'
+                                    source: 'fan-64.ico'
                                     halign: 'center'
                                     pos_hint: {'center_x': .5, 'center_y':.5}
-                            
-                        MDBottomNavigationItem:
-                            name: 'screen 2'
-                            text: 'Bed Room'
-                            icon: 'home'
-                            Image:
-                                pos_hint: {'center_x': .5, 'center_y': .5}
-                                size: '200dp', '200dp'
-                                source: 'bedroom.jpg'
                         MDBottomNavigationItem:
                             name: 'screen 3'
                             text: 'KitChen Room'
-                            icon: 'home'
+                            icon: 'home-floor-3'
+    #KITCHENROOM/////////////////////////////////////////////////////////////////////////////
+    #///////////////////////////////////////////////////////////////////////////////////  
                             Image:
-                                pos_hint: {'center_x': .5, 'center_y': .5}
-                                size: '150dp', '100dp'
+                                size_hint: 1,1
+                                pos_hint: {'center_x': .5, 'center_y': .8}
                                 source: 'kitchen.jpg'
-                            
-           
+                            MDCard:
+                                orientation: 'vertical'
+                                pos_hint: {'center_x': .25, 'center_y': .35}
+                                size_hint: .2,.2
+                                pos: 70,100
+                                elevation: 10
+                                Image:
+                                    size: '100dp', '100dp'
+                                    source: 'temp1.png'
+                                    halign: 'center'
+                                MDLabel:
+                                    text: "30"
+                                    halign: 'center'
+                                    pos_hint: {'center_x': .5, 'center_y':.4}
+                                    font_size: '25sp'
+                                    theme_text_color: 'Custom'
+                                    text_color: 215/255, 66/255, 66/255,1
+                            MDCard:
+                                orientation: 'vertical'
+                                pos_hint: {'center_x': .25, 'center_y': .12}
+                                size_hint: .2,.2
+                                pos: 230,100
+                                elevation: 10
+                                Image:
+                                    size: '100dp', '100dp'
+                                    source: 'humidity.png'
+                                    halign: 'center'
+                           
+                                MDLabel:
+                                    text: "85"
+                                    halign: 'center'
+                                    pos_hint: {'center_x': .5, 'center_y':.4}
+                                    font_size: '25sp'
+                                    theme_text_color: 'Custom'
+                                    text_color: 145/255, 222/255, 245/255,1
+                            MDCard:
+                                orientation: 'horizontal'
+                                pos_hint: {'center_x': .72, 'center_y': .35}
+                                size_hint: .32,.15
+                                pos: 100,100
+                                elevation: 10
+                                
+                                MDSwitch:
+                                    width: dp(40)
+                                    active: False
+                                    pos_hint: {'center_x':.9,'center_y': .5}
+                                Image:
+                                    size_hint: .7,.7
+                                    source: 'light-bulb-2-64.ico'
+                                    pos_hint: {'center_x': .4, 'center_y':.5}
+                            MDCard:
+                                orientation: 'horizontal'
+                                pos_hint: {'center_x': .72, 'center_y': .125}
+                                size_hint: .32,.15
+                                pos: 100,100
+                                elevation: 10     
+                                MDSwitch:
+                                    width: dp(40)
+                                    pos_hint: {'center_x':.5,'center_y': .5}
+                                Image:
+                                    size_hint: .7,.7
+                                    source: 'fan-64.ico'
+                                    halign: 'center'
+                                    pos_hint: {'center_x': .5, 'center_y':.5}
+#BUILD PROFILE OF ME//////////////////////////////////////////////////////////////////////////////
+#/////////////////////////////////////////////////////////////////////////////////////////////////
         MDNavigationDrawer:
             id: nav_drawer
             BoxLayout:
@@ -154,3 +301,5 @@ ScreenManager:
                                 width: dp(40)
                                 pos_hint: {'center_x':.7,'center_y': .5}
                                 on_active: app.check(*args)
+                            Label:
+                                text: 'power up'

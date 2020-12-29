@@ -7,7 +7,7 @@ import pyrebase
 import threading
 import time
 
-temp, hum, sign_app, status_light = "", "", "", ""
+temp, hum, sign_app, status_light, sign_fan_app, status_fan = "", "", "", "","",""
 
 config = {
   "apiKey": "AIzaSyBtq5sxCa0Bx0EqG7UTYcnmxeW70JMW79c",
@@ -27,15 +27,24 @@ class Hello(Screen):
     def __init__(self, **kwargs):
         super(Hello, self).__init__(**kwargs)
         Clock.schedule_once(self.statusLight)
+        Clock.schedule_once(self.statusfan)
         Clock.schedule_interval(self.change_temp_hum, 2)
 
     def event_button_light(self, checkbox, value):
-        global sign_app
+        global sign_app, database
         if value:
-            sign_app = "on"
+            database.child("DHT11").update({"sign_app":"on"})
         else:
-            sign_app = "off"
+            database.child("DHT11").update({"sign_app":"off"})
         print(sign_app)
+
+    def event_button_fan(self, checkbox, value):
+        global sign_fan_app, database
+        if value:
+            database.child("DHT11").update({"sign_fan_app":"on"})
+        else:
+            database.child("DHT11").update({"sign_fan_app":"off"})
+        print(sign_fan_app)
 
     def statusLight(self, *args):
         global status_light
@@ -44,6 +53,14 @@ class Hello(Screen):
             self.ids.switch_light.active = True
         else:
             self.ids.switch_light.active = False
+
+    def statusfan(self, *args):
+        global status_fan
+        print(status_fan)
+        if status_fan == "on":
+            self.ids.switch_fan.active = True
+        else:
+            self.ids.switch_fan.active = False
     
     def change_temp_hum(self, *args):
         global temp, hum
@@ -59,10 +76,6 @@ class MainWindow(Screen):
 class DemoApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-    data = {
-        'lightbulb-on-outline':'',
-        'note': 'Remember to turn OFF',
-}
     def build(self):
         self.theme_cls.primary_palette = 'Green'
         self.theme_cls.primary_hue = '400'
@@ -74,28 +87,13 @@ class DemoApp(MDApp):
             self.theme_cls.theme_style = 'Dark'
         else:
             self.theme_cls.theme_style = 'Light'
-    def callback(self, instance):
-        print(instance.icon)
-
 def get_data():
-    global temp, hum, database, status_light
+    global temp, hum, database
     while True:
         data = database.child("DHT11").get()
         hum = data.val()["hum"]
         temp = data.val()["temp"]
         time.sleep(0.5)
 
-def send_data():
-    global sign_app, database
-    while True:
-        if sign_app == "on":
-            database.child("DHT11").update({"sign_app":"on"})
-        if sign_app == "off":
-            database.child("DHT11").update({"sign_app":"off"})
-        time.sleep(0.5)
-
-data = database.child("DHT11").get()
-status_light = data.val()["status_light"]
 threading.Thread(target=get_data).start()
-threading.Thread(target=send_data).start()
 DemoApp().run()
