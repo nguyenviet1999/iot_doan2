@@ -17,94 +17,182 @@ ScreenManager:
                             name: 'screen 1'
                             text: 'Living Room'
                             icon: 'home-floor-1'
+                            
+                            Image:
+                                orientation: 'horizontal'
+                                source: '3.jpg'
+                                pos_hint: {'center_x': .5, 'center_y':.5}
+                            Image:
+                                source: 'sunny.png'
+                                pos_hint: {'center_x': .5, 'center_y':.7}
     #LIVINGROOM/////////////////////////////////////////////////////////////////////////////
     #///////////////////////////////////////////////////////////////////////////////////  
-                            Image:
-                                size_hint: 1,1
-                                pos_hint: {'center_x': .5, 'center_y': .8}
-                                source: 'living.jpg'
-                            MDCard:
-                                orientation: 'vertical'
-                                pos_hint: {'center_x': .25, 'center_y': .35}
-                                size_hint: .2,.2
-                                pos: 70,100
-                                #elevation: 10
-                                border_radius: 5
-                                radius: [20] 
-                                Image:
-                                    size: '100dp', '100dp'
-                                    source: 'temp1.png'
-                                    halign: 'center'
+                            MDLabel:
+                                text: "Welcome"
+                                halign: 'center'
+                                pos_hint: {'center_x': .185, 'center_y':.93}
+                                font_size: '18sp'
+                                bold: True
+                                theme_text_color: 'Custom'
+                                text_color: 238/255, 237/255, 237/255,1
+                            MDLabel:
+                                text: "Have nice day, Mr.Viet"
+                                halign: 'center'
+                                pos_hint: {'center_x': .3, 'center_y':.87}
+                                font_size: '15sp'
+                                theme_text_color: 'Custom'
+                                text_color: 238/255, 237/255, 237/255,1
+                            
+                            #MDCard:
+                             #   orientation: 'horizontal'
+                              #  pos_hint: {'center_x': .25, 'center_y': .4}
+                               # size_hint: .4,.15
+                               # pos: 70,100
+                               # #elevation: 10
+                               # border_radius: 5
+                                #radius: [20] 
+                                
                                     
-                                MDLabel:
-                                    id: label_temp
-                                    text: "30"
-                                    halign: 'center'
-                                    pos_hint: {'center_x': .5, 'center_y':.4}
-                                    font_size: '25sp'
-                                    theme_text_color: 'Custom'
-                                    text_color: 215/255, 66/255, 66/255,1
-                            MDCard:
-                                orientation: 'vertical'
-                                pos_hint: {'center_x': .25, 'center_y': .12}
-                                size_hint: .2,.2
-                                pos: 230,100
+                            MDLabel:
+                                id: label_temp
+                                text: "30"
+                                halign: 'center'
+                                pos_hint: {'center_x': .88, 'center_y':.96}
+                                font_size: '20sp'
+                                theme_text_color: 'Custom'
+                                text_color: 252/255, 238/255, 245/255,1
+                          #  Image:
+                           #     size: '30dp', '30dp'
+                            #    source: 'temp2.ico'
+                             #   pos_hint: {'center_x': .71, 'center_y':.96}
+                            #MDCard:
+                             #   orientation: 'horizontal'
+                             #   pos_hint: {'center_x': .75, 'center_y': .4}
+                             #   size_hint: .4,.15
+                              #  pos: 230,100
                                 #elevation: 10
-                                border_radius: 5
-                                radius: [20]        
-                                Image:
-                                    size: '100dp', '100dp'
-                                    source: 'humidity.png'
-                                    halign: 'center'
+                               # border_radius: 5
+                                #radius: [20]        
+                         #       Image:
+                          #          size: '100dp', '100dp'
+                           #         source: 'humidity.png'
+                            #        halign: 'center'
                            
-                                MDLabel:
-                                    id: label_hum
-                                    text: "85"
-                                    halign: 'center'
-                                    pos_hint: {'center_x': .5, 'center_y':.4}
-                                    font_size: '25sp'
-                                    theme_text_color: 'Custom'
-                                    text_color: 145/255, 222/255, 245/255,1
+                            MDLabel:
+                                id: label_hum
+                                text: "85"
+                                halign: 'center'
+                                pos_hint: {'center_x': .87, 'center_y':.88}
+                                font_size: '20sp'
+                                theme_text_color: 'Custom'
+                                text_color:252/255, 238/255, 245/255,1
+                           # Image:
+                            #    size: '30dp', '30dp'
+                             #   source: 'hum2.ico'
+                              #  pos_hint: {'center_x': .71, 'center_y':.88}
                             MDCard:
                                 orientation: 'horizontal'
-                                pos_hint: {'center_x': .72, 'center_y': .35}
-                                size_hint: .32,.15
+                                pos_hint: {'center_x': .8, 'center_y': .28}
+                                size_hint: .25,.2
                                 pos: 100,100
+                                
                                 #elevation: 10
-                                border_radius: 5
+                                #border_radius: 10
                                 radius: [20] 
-                                MDSwitch:
-                                    id: switch_light
-                                    width: dp(40)
-                                    on_active: root.event_button_light(*args)
-                                    active: False
-                                    pos_hint: {'center_x':.9,'center_y': .5}
-                                    on_active: app.check(*args)
-                                Label:
-                                    text: 'power up'
-                                Image:
-                                    size_hint: .7,.7
-                                    source: 'light-bulb-2-64.ico'
-                                    pos_hint: {'center_x': .4, 'center_y':.5}
+                                #MDFillRoundFlatButton:
+                                 #   text: 'Button'
+                                  #  md_bg_color: (1,1,1,0)
+                                   # text_color: (1,0,0,1)
+                                    #id: btn_light
+                                    #pos_hint: {'center_x':.9,'center_y': .5}
+                                    #on_release: root.event_button_light()
+                                MDIconButton:
+                                    id: btn_light
+                                    icon: "ceiling-light"
+                                    text_color: (0,0,0,1)
+                                    theme_text_color: "Custom"
+                                    user_font_size: "60sp"
+                                    pos_hint: {'center_x':.5,'center_y': .5}
+                                    on_release: root.event_button_light()
+                            MDLabel:
+                                text: "Cover Light"
+                                halign: 'center'
+                                pos_hint: {'center_x': .8, 'center_y':.12}
+                                font_size: '15sp'
+                                theme_text_color: 'Custom'
+                                text_color: 246/255, 238/255, 201/255,1
+                                #MDLabel:
+                                 #   text: "Light"
+                                  #  halign: 'center'
+                                  #  pos_hint: {'center_x': .5, 'center_y':.5}
+                                   # font_size: '10sp'
+                                    #theme_text_color: 'Custom'
+                                    #text_color: 215/255, 66/255, 66/255,1
                             MDCard:
                                 orientation: 'horizontal'
-                                pos_hint: {'center_x': .72, 'center_y': .125}
-                                size_hint: .32,.15
+                                pos_hint: {'center_x': .50, 'center_y': .28}
+                                size_hint: .25,.2
                                 pos: 100,100
-                                border_radius: 5
+                                #border_radius: 5
                                 radius: [20] 
                                 #elevation: 10     
-                                MDSwitch:
-                                    id: switch_fan
-                                    width: dp(40)
+                                MDIconButton:
+                                    id: btn_fan
+                                    icon: "track-light"
+                                    text_color: (83/255, 78/255, 82/255,1)
+                                    theme_text_color: "Custom"
+                                    user_font_size: "60sp"
                                     pos_hint: {'center_x':.5,'center_y': .5}
-                                    on_active: root.event_button_fan(*args)
-                                    active: False
-                                Image:
-                                    size_hint: .7,.7
-                                    source: 'fan-64.ico'
-                                    halign: 'center'
-                                    pos_hint: {'center_x': .5, 'center_y':.5}
+                            MDLabel:
+                                text: "Main Light"
+                                halign: 'center'
+                                pos_hint: {'center_x': .50, 'center_y':.12}
+                                font_size: '15sp'
+                                theme_text_color: 'Custom'
+                                text_color: 246/255, 238/255, 201/255,1
+                            MDCard:
+                                orientation: 'horizontal'
+                                pos_hint: {'center_x': .2, 'center_y': .28}
+                                size_hint: .25,.2
+                                pos: 100,100
+                                #border_radius: 5
+                                radius: [20] 
+                                #elevation: 10     
+                                MDIconButton:
+                                    id: btn_fan
+                                    icon: "fan"
+                                    text_color: (83/255, 78/255, 82/255,1)
+                                    theme_text_color: "Custom"
+                                    user_font_size: "60sp"
+                                    pos_hint: {'center_x':.5,'center_y': .5}
+                                
+                            MDLabel:
+                                text: "Ceiling Fan"
+                                halign: 'center'
+                                pos_hint: {'center_x': .2, 'center_y':.12}
+                                font_size: '15sp'
+                                theme_text_color: 'Custom'
+                                text_color: 246/255, 238/255, 201/255,1
+                            MDLabel:
+                                text: "DEVICES"
+                                halign: 'center'
+                                pos_hint: {'center_x': .50, 'center_y':.44}
+                                font_size: '20sp'
+                                bold: True
+                                theme_text_color: 'Custom'
+                                text_color: 1, 1, 1,1
+                            
+                                    #on_release: root.event_button_light()
+                                #MDLabel:
+                                 #   text: "Main Light"
+                                  #  halign: 'center'
+                                   # pos_hint: {'center_x': .5, 'center_y':.5}
+                                    #font_size: '10sp'
+                                    #theme_text_color: 'Custom'
+                                    #text_color: 215/255, 66/255, 66/255,1
+                            
+
+                            
     #BEDROOM/////////////////////////////////////////////////////////////////////////////
     #///////////////////////////////////////////////////////////////////////////////////     
                         MDBottomNavigationItem:
@@ -301,5 +389,3 @@ ScreenManager:
                                 width: dp(40)
                                 pos_hint: {'center_x':.7,'center_y': .5}
                                 on_active: app.check(*args)
-                            Label:
-                                text: 'power up'
